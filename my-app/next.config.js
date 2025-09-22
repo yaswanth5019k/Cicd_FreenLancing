@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    NEXT_PUBLIC_BACKEND_URL: 'http://localhost:8080/api',
+    NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8081/api',
   },
   webpack: (config, { isServer }) => {
     // Add a rule to handle PDF.js worker

@@ -5,6 +5,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=2300032238
       - MYSQL_DATABASE=arbeit
+    ports:
+      - "3310:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
@@ -55,7 +57,7 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://backend:8080
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8080/api
       - MONGO_URL=mongodb://mongo:27017/arbeit
       - ACCESS_TOKEN=dev-access-token
       - REFRESH_TOKEN=dev-refresh-token

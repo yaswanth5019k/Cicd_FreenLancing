@@ -195,6 +195,11 @@ export function AuthProvider({children}) {
                 });
             }
 
+            // Treat 204 No Content as non-fatal (no refresh cookie yet)
+            if (response.status === 204) {
+                return new Response(null, { status: 204 });
+            }
+
             if (!response.ok) {
                 return new Response(JSON.stringify({ error: 'Token refresh failed' }), {
                     status: response.status,

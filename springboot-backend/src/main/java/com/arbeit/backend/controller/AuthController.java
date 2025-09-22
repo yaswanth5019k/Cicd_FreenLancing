@@ -78,8 +78,7 @@ public class AuthController {
                                          HttpServletResponse response) {
         try {
             if (refreshToken == null) {
-                return ResponseEntity.badRequest()
-                        .body(new AuthResponse("Refresh token not found"));
+                return ResponseEntity.noContent().build();
             }
 
             String newAccessToken = authService.refreshToken(refreshToken);

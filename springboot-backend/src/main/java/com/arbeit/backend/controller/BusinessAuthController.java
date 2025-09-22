@@ -77,8 +77,7 @@ public class BusinessAuthController {
                                          HttpServletResponse response) {
         try {
             if (refreshToken == null) {
-                return ResponseEntity.badRequest()
-                        .body(new AuthResponse("Refresh token not found"));
+                return ResponseEntity.noContent().build();
             }
 
             String newAccessToken = businessAuthService.refreshToken(refreshToken);
