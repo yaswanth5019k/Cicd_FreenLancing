@@ -1,0 +1,503 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .page-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .outer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .auth-container {
+    display: flex;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    min-height: 600px;
+  }
+  
+  @keyframes floatAnimation {
+    0% {
+      transform: translate(-50%, -50%);
+    }
+    50% {
+      transform: translate(-50%, -55%);
+    }
+    100% {
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  @keyframes pulsePattern {
+    0% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.15;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    }
+    50% {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    }
+    100% {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    }
+  }
+  
+  @keyframes floatingElements {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
+  .auth-image {
+    flex: 1.2;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 600px;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  @media (min-width: 768px) {
+    .auth-image {
+      display: flex;
+    }
+  }
+  
+  .dots-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background-image: 
+      radial-gradient(#fff 1px, transparent 1px),
+      linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 20px 20px, 200% 100%;
+    animation: 
+      pulsePattern 4s ease-in-out infinite,
+      shine 8s linear infinite;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  }
+  
+  /* Remove the old business elements styles */
+  .auth-image::before,
+  .auth-image::after,
+  .business-elements,
+  .business-elements::before,
+  .business-elements::after,
+  .business-icon {
+    display: none;
+  }
+  
+  .auth-image::before,
+  .auth-image::after,
+  .business-elements,
+  .business-elements::before,
+  .business-elements::after,
+  .business-icon {
+    display: none;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .auth-card {
+    flex: 1;
+    padding: 40px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  .auth-card h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .auth-card p {
+    margin: 10px 0 30px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  .toggle-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .toggle-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+  
+  .toggle-buttons button.active {
+    background: #4f46e5;
+    color: white;
+  }
+  
+  .toggle-buttons button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: white;
+  }
+  
+  .input-group input:focus {
+    border-color: #4f46e5;
+    outline: none;
+  }
+  
+  .input-group input:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+  }
+  
+  .input-group label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    transition: all 0.2s;
+    pointer-events: none;
+    background: white;
+    padding: 0 4px;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 0.875rem;
+    color: #4f46e5;
+  }
+  
+  .input-group input:disabled + label {
+    color: #9ca3af;
+  }
+  
+  .verify-button,
+  .reset-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+  }
+  
+  .verify-button {
+    background: #4f46e5;
+    color: white;
+  }
+  
+  .verify-button:hover:not(:disabled) {
+    background: #4338ca;
+  }
+  
+  .reset-button {
+    background: #ef4444;
+    color: white;
+  }
+  
+  .reset-button:hover:not(:disabled) {
+    background: #dc2626;
+  }
+  
+  .verify-button:disabled,
+  .reset-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .show-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .show-password input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .show-password label {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  form > button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #4f46e5;
+    color: white;
+  }
+  
+  form > button[type="submit"]:hover:not(:disabled) {
+    background: #4338ca;
+  }
+  
+  form > button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #ef4444;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+  }
+  
+  /* Toast Styles */
+  :root {
+    --toastify-color-success: #10b981;
+    --toastify-color-error: #ef4444;
+  }
+  
+  @media (max-width: 1200px) {
+    .auth-image {
+      min-width: 500px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .auth-container {
+      min-height: 500px;
+    }
+    
+    .auth-image {
+      min-width: 450px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .auth-image {
+      display: none;
+    }
+    
+    .auth-card {
+      max-width: 100%;
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page-container {
+      height: 100vh;
+      overflow: hidden;
+    }
+  
+    .auth-container {
+      height: 100vh;
+      overflow: hidden;
+    }
+  
+    .auth-image {
+      min-width: 0;
+      padding: 30px;
+    }
+  
+    .auth-card {
+      padding: 20px;
+      overflow-y: auto;
+    }
+  
+    .auth-card h2 {
+      font-size: 28px;
+    }
+  
+    .toggle-buttons {
+      max-width: 100%;
+    }
+  
+    .auth-card form {
+      padding: 0 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .auth-card h2 {
+      font-size: 24px;
+    }
+  
+    .toggle-buttons button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .input-group input {
+      padding: 10px;
+    }
+  }
+  
+  .disabled-input {
+    background-color: #f5f5f5;
+    color: #0066ff !important;
+    cursor: not-allowed;
+  }
+  
+  .disabled-input:focus {
+    border-color: #ddd;
+    box-shadow: none;
+  }
+  
+  /* Remove these CSS classes as they're no longer needed */
+  .divider,
+  .divider::before,
+  .divider::after,
+  .divider span,
+  .google-signin,
+  .google-signin:hover {
+    display: none;
+  }
+  
+  .company-mail-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .company-mail-group input {
+    flex: 1;
+  }
+  
+  .verify-button,
+  .reset-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 70px;
+    height: 40px;
+  }
+  
+  .verify-button {
+    background-color: #4285f4;
+    color: white;
+  }
+  
+  .verify-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .reset-button {
+    background-color: #f5f5f5;
+    color: #666;
+  }
+  
+  .reset-button:hover {
+    background-color: #e5e5e5;
+  }
+  
+  /* Adjust input group for company mail */
+  .company-mail-group .input-group {
+    margin-bottom: 0;
+  }
+  
+  /* Ensure label doesn't overlap with button */
+  .company-mail-group label {
+    z-index: 1;
+  }
+  
+  .login-note {
+    text-align: center;
+    margin: 20px 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  .login-note a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-note a:hover {
+    text-decoration: underline;
+  }
+  
+  
