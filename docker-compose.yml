@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./springboot-backend
+      dockerfile: Dockerfile
+    container_name: arbeit-backend
+    ports:
+      - "8081:8080"
+    environment:
+      - JAVA_TOOL_OPTIONS=-XX:+UseContainerSupport
+    networks:
+      - arbeitnet
+
+  frontend:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+    container_name: arbeit-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8080
+    depends_on:
+      - backend
+    networks:
+      - arbeitnet
+
+networks:
+  arbeitnet:
+    driver: bridge
