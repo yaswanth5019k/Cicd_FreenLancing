@@ -27,8 +27,8 @@ pipeline {
 
         stage('Install Frontend Dependencies & Build') {
             steps {
-                dir('my-app') {
-                    withEnv([
+        dir('my-app') {
+            withEnv([
                 'PATH=/opt/homebrew/bin:$PATH',
                 'MONGO_URL=mongodb://localhost:27017/dummy',
                 'ACCESS_TOKEN=dev-access-token',
@@ -39,8 +39,8 @@ pipeline {
                 npm run build
                 '''
             }
-
-            }
+        }
+    }
         }
 
         stage('Build Docker Images') {
