@@ -17,30 +17,29 @@ pipeline {
             steps {
                 dir('springboot-backend') {
                     sh '''
-            export PATH=$PATH:/opt/homebrew/bin
-            mvn clean package -DskipTests
-            '''
-
+                    export PATH=$PATH:/opt/homebrew/bin
+                    mvn clean package -DskipTests
+                    '''
                 }
             }
         }
 
         stage('Install Frontend Dependencies & Build') {
             steps {
-        dir('my-app') {
-            withEnv([
-                'PATH=/opt/homebrew/bin:$PATH',
-                'MONGO_URL=mongodb://localhost:27017/dummy',
-                'ACCESS_TOKEN=dev-access-token',
-                'REFRESH_TOKEN=dev-refresh-token'
-            ]) {
-                sh '''
-                npm ci
-                npm run build
-                '''
+                dir('my-app') {
+                    withEnv([
+                        'PATH+HOME=/opt/homebrew/bin',  
+                        'MONGO_URL=mongodb://localhost:27017/dummy',
+                        'ACCESS_TOKEN=dev-access-token',
+                        'REFRESH_TOKEN=dev-refresh-token'
+                    ]) {
+                        sh '''
+                        npm ci
+                        npm run build
+                        '''
+                    }
+                }
             }
-        }
-    }
         }
 
         stage('Build Docker Images') {
@@ -51,10 +50,7 @@ pipeline {
 
         stage('Run Containers') {
             steps {
-                
                 sh 'docker-compose down'
-
-                
                 sh 'docker-compose up -d'
             }
         }
