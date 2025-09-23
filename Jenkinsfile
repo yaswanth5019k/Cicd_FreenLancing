@@ -28,8 +28,11 @@ pipeline {
         stage('Install Frontend Dependencies & Build') {
             steps {
                 dir('my-app') {
-                    sh 'npm ci'
-                    sh 'npm run build'
+                    sh '''
+            export PATH=$PATH:/opt/homebrew/bin
+            npm ci
+            npm run build
+            '''
                 }
             }
         }
