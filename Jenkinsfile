@@ -43,17 +43,17 @@ pipeline {
         }
 
         stage('Build Docker Images') {
-            steps {
-                sh 'docker-compose build'
-            }
-        }
+    steps {
+        sh '/usr/local/bin/docker-compose build'
+    }
+}
 
-        stage('Run Containers') {
-            steps {
-                sh 'docker-compose down'
-                sh 'docker-compose up -d'
-            }
-        }
+stage('Run Containers') {
+    steps {
+        sh '/usr/local/bin/docker-compose down'
+        sh '/usr/local/bin/docker-compose up -d'
+    }
+}
     }
 
     post {
