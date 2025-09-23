@@ -28,12 +28,18 @@ pipeline {
         stage('Install Frontend Dependencies & Build') {
             steps {
                 dir('my-app') {
-                    sh '''
-            export PATH=$PATH:/opt/homebrew/bin
-            npm ci
-            npm run build
-            '''
-                }
+                    withEnv([
+                'PATH=/opt/homebrew/bin:$PATH',
+                'MONGO_URL=mongodb://localhost:27017/dummy',
+                'ACCESS_TOKEN=dev-access-token',
+                'REFRESH_TOKEN=dev-refresh-token'
+            ]) {
+                sh '''
+                npm ci
+                npm run build
+                '''
+            }
+
             }
         }
 
