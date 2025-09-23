@@ -53,8 +53,11 @@ pipeline {
 
 stage('Run Containers') {
     steps {
-        sh '/usr/local/bin/docker-compose down'
-        sh '/usr/local/bin/docker-compose up -d'
+        sh '''
+           export PATH=/usr/local/bin:$PATH
+           docker-compose down
+           docker-compose up -d
+        '''
     }
 }
     }
