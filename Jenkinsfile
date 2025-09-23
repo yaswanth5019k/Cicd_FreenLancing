@@ -16,7 +16,11 @@ pipeline {
         stage('Build Spring Boot Backend') {
             steps {
                 dir('springboot-backend') {
-                    sh 'mvn clean package -DskipTests'
+                    sh '''
+            export PATH=$PATH:/opt/homebrew/bin
+            mvn clean package -DskipTests
+            '''
+
                 }
             }
         }
